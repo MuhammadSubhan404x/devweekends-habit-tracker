@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AuraHabit — Mindful Habit Tracker</title>
+  <meta name="description" content="Track your daily routines, cultivate consistency, and visualize your progress with a beautiful weekly habit grid.">
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Ambient glow background elements -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo-area">
+        <div class="logo-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="url(#logo-grad)" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="22" y2="22" gradientUnits="userSpaceOnUse">
+                <stop offset="0%" stop-color="#FF5F6D" />
+                <stop offset="100%" stop-color="#FFC371" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <h1>AuraHabit</h1>
+      </div>
+      
+      <div class="header-controls">
+        <button id="theme-toggle" class="btn-icon" aria-label="Toggle visual theme" title="Toggle Theme">
+          <!-- Moon Icon (shows in light theme) -->
+          <svg class="icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          <!-- Sun Icon (shows in dark theme) -->
+          <svg class="icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.22" x2="5.64" y2="17.78"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+        </button>
+        
+        <div class="settings-menu">
+          <button id="settings-toggle" class="btn-icon" aria-label="Open settings" title="Week Settings">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          </button>
+          <div class="settings-dropdown dropdown-hidden" id="settings-dropdown">
+            <span class="dropdown-title">Preferences</span>
+            <div class="dropdown-item">
+              <label for="week-start-select">Week Starts On</label>
+              <select id="week-start-select" class="form-select">
+                <option value="1">Monday</option>
+                <option value="0">Sunday</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- Habit Input Card -->
+      <section class="card form-card">
+        <form id="add-habit-form" class="add-habit-form">
+          <div class="input-group">
+            <input type="text" id="habit-name-input" placeholder="Type a habit (e.g., Read 30 min, Exercise)..." required autocomplete="off" maxlength="40" aria-label="New habit name">
+            <button type="submit" class="btn btn-primary">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add Habit
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Grid Toolbar / Week Navigation -->
+      <section class="toolbar-card">
+        <div class="week-nav">
+          <button id="prev-week" class="btn btn-secondary btn-icon-text" aria-label="Previous week">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            Prev
+          </button>
+          
+          <div class="current-week-display" id="week-range-text" aria-live="polite">
+            Loading dates...
+          </div>
+          
+          <button id="next-week" class="btn btn-secondary btn-icon-text" aria-label="Next week">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <button id="today-shortcut" class="btn btn-secondary" aria-label="Jump to this week">
+          Today
+        </button>
+      </section>
+
+      <!-- Habit Tracker Grid Card -->
+      <section class="card grid-card">
+        <!-- Empty State Container -->
+        <div id="empty-state" class="empty-state">
+          <div class="empty-icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </div>
+          <h3>Build Your Ideal Routine</h3>
+          <p>No habits added yet. Type a routine in the box above to kickstart your journey!</p>
+          <button id="empty-state-btn" class="btn btn-primary">Create Your First Habit</button>
+        </div>
+
+        <!-- Working Weekly Grid (hidden when empty) -->
+        <div id="grid-container" class="grid-container hidden">
+          <div class="grid-table-wrapper">
+            <table class="grid-table" id="habit-grid-table">
+              <thead>
+                <tr id="grid-header-row">
+                  <th class="col-habit-header">Habit</th>
+                  <!-- Days injection -->
+                  <th class="col-day-header">Mon</th>
+                  <th class="col-day-header">Tue</th>
+                  <th class="col-day-header">Wed</th>
+                  <th class="col-day-header">Thu</th>
+                  <th class="col-day-header">Fri</th>
+                  <th class="col-day-header">Sat</th>
+                  <th class="col-day-header">Sun</th>
+                  <th class="col-streak-header">Streak</th>
+                </tr>
+              </thead>
+              <tbody id="grid-body">
+                <!-- Habit rows injected dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>&copy; 2026 AuraHabit. Crafted for consistency.</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
