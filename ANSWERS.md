@@ -22,7 +22,7 @@ Since this project is built entirely on the modern vanilla web stack (HTML5, CSS
 
 ### Deployed URL
 The project has been deployed to GitHub Pages and is live at:
-**[AuraHabit Live Link](https://subhan404x.github.io/devweekends-habit-tracker/)** *(or your chosen hosting URL)*
+**[AuraHabit Live Link](https://muhammadsubhan404x.github.io/devweekends-habit-tracker/)**
 
 ---
 

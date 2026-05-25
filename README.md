@@ -5,7 +5,7 @@ Welcome to **AuraHabit**, a beautiful, premium, single-page weekly habit tracker
 This project was built from scratch as part of my technical assessment for the **Dev Weekends Fellowship 2026**.
 
 ## Deployed URL
-The project is live at: [AuraHabit on GitHub Pages](https://subhan404x.github.io/devweekends-habit-tracker/) *(or your deployed link here)*
+The project is live at: [AuraHabit on GitHub Pages](https://muhammadsubhan404x.github.io/devweekends-habit-tracker/)
 
 ---
 
