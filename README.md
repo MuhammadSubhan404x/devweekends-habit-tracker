@@ -1,4 +1,4 @@
-# AuraHabit — Mindful Habit Tracker
+# AuraHabit | Mindful Habit Tracker
 
 Welcome to **AuraHabit**, a beautiful, premium, single-page weekly habit tracker designed to help you build consistency and manifest your daily routines. 
 
